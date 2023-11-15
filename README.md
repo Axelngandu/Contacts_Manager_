@@ -9,4 +9,4 @@ Delete a contact.
 
 Contacts are sorted and classified
 # warning
-This code only works under windows ;)
+This code only works on windows ;)
