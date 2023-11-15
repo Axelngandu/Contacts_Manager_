@@ -1,5 +1,5 @@
 # Contacts_Manager_
-It's a little practical work I had to do during my first year at JUNIA ISEN to put into practice everything I'd learned in the C language.
+This is a small C-language program I had to create during my first year at JUNIA ISEN.
 
 The program is made like a telephone directory.
 So you can :
