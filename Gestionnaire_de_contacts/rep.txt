@@ -1,3 +1,1 @@
-curry;stephen;3076765
-james;lebron;23456
-kyrie;irving;76543
+
