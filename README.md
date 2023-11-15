@@ -3,9 +3,9 @@ This is a small C-language program I had to create during my first year at JUNIA
 
 The program is made like a telephone directory.
 So you can :
-Register a contact with first name, last name and number.
-You can also consult your directory
-Delete a contact.
+* Register a contact with first name, last name and number.
+* You can also consult your directory
+* Delete a contact.
 
 Contacts are sorted and classified
 # warning
