@@ -9,4 +9,5 @@ Delete a contact.
 
 Contacts are sorted and classified
 # warning
-This code only works on windows ;)
+This non-platform code only works on Windows ;)
+If you want to make it work on other operating systems, you'll need to replace some of the Windows libraries I've used with cross-platform equivalents.
