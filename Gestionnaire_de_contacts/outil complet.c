@@ -1,5 +1,5 @@
-#include <stdio.h>   /* pour les entrÈes-sorties */
-#include <string.h>  /* pour les manipulations de chaÓnes de caractËres */
+#include <stdio.h>   /* pour les entr√©es-sorties */
+#include <string.h>  /* pour les manipulations de cha√Ænes de caract√®res */
 #include <conio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -9,21 +9,21 @@
 #define VERSION 3.0
 #define SQUELET
 /**************************************************************************/
-/* ComplÈter votre nom ici                                                */
-/*   Nom :     NGANDU                    PrÈnom :    Axel                 */
+/* Compl√©ter votre nom ici                                                */
+/*   Nom :     NGANDU                    Pr√©nom :    Axel                 */
 /**************************************************************************/
 
 extern bool modif;
 
 
 /**********************************************************************/
-/*  Ajout d'un contact dans le rÈpertoire stockÈ en mÈmoire           */
+/*  Ajout d'un contact dans le r√©pertoire stock√© en m√©moire           */
 /**********************************************************************/
 
 int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
 {
 #ifdef IMPL_TAB
-	// complÈter code ici pour tableau
+	// compl√©ter code ici pour tableau
 	int idx = rep->nb_elts;
     if (rep->nb_elts < MAX_ENREG)
 	{
@@ -37,33 +37,6 @@ int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
 		return(ERROR);
 	}
 
-
-#else
-#ifdef IMPL_LIST
-
-	bool inserted = false;
-	if (rep->nb_elts == 0) {
-		if (InsertElementAt(rep->liste, rep->liste->size, enr) != 0)
-        {
-			rep->nb_elts += 1;
-			modif = true;
-			rep->est_trie = true;
-			return(OK);
-		}
-
-	}
-	else {
-			//
-			// complÈter code ici pour Liste
-			//
-			//
-			//
-
-	}
-
-
-#endif
-
 #endif
 
 
@@ -71,14 +44,14 @@ int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
 
 } /* fin ajout */
   /**********************************************************************/
-  /* supprime du rÈpertoire l'enregistrement dont l'indice est donnÈ en */
-  /*   paramËtre       et place modif = true                            */
+  /* supprime du r√©pertoire l'enregistrement dont l'indice est donn√© en */
+  /*   param√®tre       et place modif = true                            */
   /**********************************************************************/
 #ifdef IMPL_TAB
 void supprimer_un_contact_dans_rep(Repertoire *rep, int indice)
 {
 
-	// complÈter code ici pour tableau
+	// compl√©ter code ici pour tableau
 	if (rep->nb_elts >= 1)
     {                                                       /* s'il y a au moins un element ds le tableau et que l'indice pointe a l'interieur */
         rep->tab[indice] = rep->tab[rep->nb_elts-1];
@@ -89,35 +62,16 @@ void supprimer_un_contact_dans_rep(Repertoire *rep, int indice)
 	return;
 } /* fin supprimer */
 
-#else
-#ifdef IMPL_LIST
-  /************************************************************************/
-  /* supprime du rÈpertoire l'enregistrement contenu dans le maillon elem */
-  /*                   et fixe modif ‡ vrai                              */
-  /************************************************************************/
-  // complet
-
-	int supprimer_un_contact_dans_rep_liste(Repertoire *rep, SingleLinkedListElem *elem) {
-
-	int ret=DeleteLinkedListElem(rep->liste, elem);
-	if (ret == 1) {
-		rep->nb_elts--;
-		modif = true;
-	}
-
-	return (0);
-	}
-#endif
 #endif
 
 
   /**********************************************************************/
-  /*  fonction d'affichage d'un enregistrement sur une ligne ‡ l'Ècran  */
+  /*  fonction d'affichage d'un enregistrement sur une ligne √† l'√©cran  */
   /* ex Dupont, Jean                 0320304050                         */
   /**********************************************************************/
 void affichage_enreg(Enregistrement enr)
 {
-	// code ‡ complÈter ici
+	// code √† compl√©ter ici
 
 
 } /* fin affichage_enreg */
@@ -128,8 +82,8 @@ void affichage_enreg(Enregistrement enr)
   /**********************************************************************/
 void affichage_enreg_frmt(Enregistrement enr)
 {
-	// code ‡ complÈter ici
-	// comme fonction affichage_enreg, mais avec prÈsentation alignÈes des infos
+	// code √† compl√©ter ici
+	// comme fonction affichage_enreg, mais avec pr√©sentation align√©es des infos
 	int i,j,k;
 	char msg1[31]={0},msg2[31]={},msg3[31]={0};
 	i = strlen(enr.nom);
@@ -188,14 +142,6 @@ Enregistrement tmp;
     }
   }
 
-
-
-#else
-#ifdef IMPL_LIST
-	// ajouter code ici pour Liste
-	// rien ‡ faire !
-	// la liste est toujours triÈe
-#endif
 #endif
 
 
@@ -204,15 +150,15 @@ Enregistrement tmp;
 } /* fin trier */
 
   /**********************************************************************/
-  /* recherche dans le rÈpertoire d'un enregistrement correspondant au  */
-  /*   nom ‡ partir de l'indice ind                                     */
-  /*   retourne l'indice de l'enregistrement correspondant au critËre ou*/
-  /*   un entier nÈgatif si la recherche est nÈgative				    */
+  /* recherche dans le r√©pertoire d'un enregistrement correspondant au  */
+  /*   nom √† partir de l'indice ind                                     */
+  /*   retourne l'indice de l'enregistrement correspondant au crit√®re ou*/
+  /*   un entier n√©gatif si la recherche est n√©gative				    */
   /**********************************************************************/
 
 int rechercher_nom(Repertoire *rep, char nom[], int ind)
 {
-	int i = ind;		    /* position (indice) de dÈbut de recherche dans tableau/liste rep */
+	int i = ind;		    /* position (indice) de d√©but de recherche dans tableau/liste rep */
 	int ind_fin;			/* position (indice) de fin de tableau/liste rep */
 
 	char tmp_nom[MAX_NOM];	/* 2 variables temporaires dans lesquelles */
@@ -220,7 +166,7 @@ int rechercher_nom(Repertoire *rep, char nom[], int ind)
 							/* tableau, afin de les convertir en majuscules et les comparer */
 	bool trouve = false;
 
-	ind_fin = rep->nb_elts - 1; // indice de fin ‡ ne pas dÈpasser
+	ind_fin = rep->nb_elts - 1; // indice de fin √† ne pas d√©passer
 	strncpy_s(tmp_nom, _countof(tmp_nom) , nom, _TRUNCATE);
 
 #ifdef IMPL_TAB
@@ -235,22 +181,17 @@ int rechercher_nom(Repertoire *rep, char nom[], int ind)
 			i++;
 	}
 
-#else
-#ifdef IMPL_LIST
-							// ajouter code ici pour Liste
-
-#endif
 #endif
 
 	return((trouve) ? i : -1);
 } /* fin rechercher_nom */
 
   /*********************************************************************/
-  /* Supprimer tous les caracteres non numÈriques de la chaines        */
+  /* Supprimer tous les caracteres non num√©riques de la chaines        */
   /*********************************************************************/
 void compact(char *s)
 {
-	// complÈter code ici
+	// compl√©ter code ici
 	int j;
 	j= strlen(s);
 	for(int i=0;i<j;i++)
@@ -269,9 +210,9 @@ void compact(char *s)
 }
 
 /**********************************************************************/
-/* sauvegarde le rÈpertoire dans le fichier dont le nom est passÈ en  */
+/* sauvegarde le r√©pertoire dans le fichier dont le nom est pass√© en  */
 /* argument                                                           */
-/* retourne OK si la sauvegarde a fonctionnÈ ou ERROR sinon           */
+/* retourne OK si la sauvegarde a fonctionn√© ou ERROR sinon           */
 /**********************************************************************/
 int sauvegarder(Repertoire *rep, char nom_fichier[])
 {
@@ -291,12 +232,7 @@ int sauvegarder(Repertoire *rep, char nom_fichier[])
         printf("%d",rep->nb_elts);
     }
     fclose(fic_rep);
-
-
-#else
-#ifdef IMPL_LIST
-	// ajouter code ici pour Liste
-#endif
+	
 #endif
 
 	return(OK);
@@ -304,9 +240,9 @@ int sauvegarder(Repertoire *rep, char nom_fichier[])
 
 
   /**********************************************************************/
-  /*   charge dans le rÈpertoire le contenu du fichier dont le nom est  */
-  /*   passÈ en argument                                                */
-  /*   retourne OK si le chargement a fonctionnÈ et ERROR sinon         */
+  /*   charge dans le r√©pertoire le contenu du fichier dont le nom est  */
+  /*   pass√© en argument                                                */
+  /*   retourne OK si le chargement a fonctionn√© et ERROR sinon         */
   /**********************************************************************/
 
 int charger(Repertoire *rep, char nom_fichier[])
@@ -346,13 +282,10 @@ int charger(Repertoire *rep, char nom_fichier[])
 					{
 						idx++;
 						if (lire_champ_suivant(buffer, &idx, rep->tab[num_rec].tel, MAX_TEL, SEPARATEUR) == OK)
-							num_rec++;		/* element ‡ priori correct, on le comptabilise */
+							num_rec++;		/* element √† priori correct, on le comptabilise */
 					}
 				}
-#else
-#ifdef IMPL_LIST
-														// ajouter code implemention liste
-#endif
+				
 #endif
 
 
