@@ -1,5 +1,5 @@
 /**********************************************************************/
-/*****                    Répertoire téléphonique                   ***/
+/*****                    RÃ©pertoire tÃ©lÃ©phonique                   ***/
 /**********************************************************************/
 /*                                                                    */
 /*       rep.c                                                        */
@@ -8,17 +8,17 @@
 /*       SQUELET                                                   */
 /*                                                                    */
 /**********************************************************************/
-/* REMARQUE: le fichier de données est au format suivant :            */
+/* REMARQUE: le fichier de donnÃ©es est au format suivant :            */
 /*      nom;prenom;no_de_telephone1                                   */
 /*      nom2;prenom2;no_de_telephone2                                 */
 /*      ...                                                           */
-/* soit un enregistrement par ligne de 3 champs separés par ';'        */
+/* soit un enregistrement par ligne de 3 champs separÃ©s par ';'        */
 /* Si on utilise un autre fichier de donnees que rep.txt, il faut     */
-/* passer son nom en paramètre à l'appel du programme                 */
+/* passer son nom en paramÃ¨tre Ã  l'appel du programme                 */
 /**********************************************************************/
 
-#include <stdio.h>   /* pour les entrées-sorties */
-#include <string.h>  /* pour les manipulations de chaînes de caractères */
+#include <stdio.h>   /* pour les entrÃ©es-sorties */
+#include <string.h>  /* pour les manipulations de chaÃ®nes de caractÃ¨res */
 #include <conio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -28,21 +28,21 @@
 #include "rep.h"
 
 
-/* flag de modification du répertoire : indique si le tableau de contacts été‚ modifié         */
-/* Permet notamment de décider s'il faut sauvegarder le répertoire dans un fichier             */
+/* flag de modification du rÃ©pertoire : indique si le tableau de contacts Ã©tÃ©â€š modifiÃ©         */
+/* Permet notamment de dÃ©cider s'il faut sauvegarder le rÃ©pertoire dans un fichier             */
 bool modif = false;
 
 /* fichier texte de sauvegarde des contacts */
 char nom_fichier[MAX_NOM_FICHIER];
 
-/* divers messages à l'intention de l'utilisateur  */
+/* divers messages Ã  l'intention de l'utilisateur  */
 
-/* \x82 permet de forcer l'encodage du caractère 'é' à la valeur hexa 0x82 quand c'est nécessaire */
-/* et non à celle utilisée pour l'encodage du fichier source  .c par visual studio */
-/* c'est la valeur utilisée par le  Western European (DOS) - Codepage 850 utilisé dans la console DOS */
+/* \x82 permet de forcer l'encodage du caractÃ¨re 'Ã©' Ã  la valeur hexa 0x82 quand c'est nÃ©cessaire */
+/* et non Ã  celle utilisÃ©e pour l'encodage du fichier source  .c par visual studio */
+/* c'est la valeur utilisÃ©e par le  Western European (DOS) - Codepage 850 utilisÃ© dans la console DOS */
 
-char mess1[] = "\nn'existe pas dans le répertoire.\n";
-char mess2[] = "\nPlus d'autre %s dans le répertoire\n";
+char mess1[] = "\nn'existe pas dans le rÃ©pertoire.\n";
+char mess2[] = "\nPlus d'autre %s dans le rÃ©pertoire\n";
 
 
 /*****************************************************************************/
@@ -52,11 +52,11 @@ char mess2[] = "\nPlus d'autre %s dans le répertoire\n";
 void main(int argc, char *argv[])
 {
 
-	char choix;						/* caractère de l'option choisie dans menu utilisateur */
+	char choix;						/* caractÃ¨re de l'option choisie dans menu utilisateur */
 
-	Repertoire repertoire;			/* variable qui déclare et crée le répertoire en mémoire */
+	Repertoire repertoire;			/* variable qui dÃ©clare et crÃ©e le rÃ©pertoire en mÃ©moire */
 	system("CHCP 1252");
-	printf("\nsetlocale : %s\n",setlocale(LC_ALL, "fr-FR")); /* option de localisation pour les caractères accentués  */
+	printf("\nsetlocale : %s\n",setlocale(LC_ALL, "fr-FR")); /* option de localisation pour les caractÃ¨res accentuÃ©s  */
 
 	if (argc == 1)
 	{
@@ -66,7 +66,7 @@ void main(int argc, char *argv[])
 	{
 		strcpy_s(nom_fichier, _countof(nom_fichier), (char *)argv[1]);	/* nom du fichier utilisateur */
 	}
-	/* intialise le nombre d'éléments à zéro, alloue la mémoire du répertoire, 
+	/* intialise le nombre d'Ã©lÃ©ments Ã  zÃ©ro, alloue la mÃ©moire du rÃ©pertoire, 
 	charge le fichier et le trie */
 	if (init_rep(&repertoire) <0) return;
 
@@ -123,18 +123,18 @@ void main(int argc, char *argv[])
 
 
 /********************************************************************************/
-/* initialisation d'un répertoire                                               */
-/* prend en paramètre un pointeur vers le répertoire à initialiser              */
-/* intialise le nombre d'éléments à zéro, charge le fichier et le trie          */
+/* initialisation d'un rÃ©pertoire                                               */
+/* prend en paramÃ¨tre un pointeur vers le rÃ©pertoire Ã  initialiser              */
+/* intialise le nombre d'Ã©lÃ©ments Ã  zÃ©ro, charge le fichier et le trie          */
 /********************************************************************************/
 
 int init_rep(Repertoire *rep)
 {
-	/* fonction complète : ne pas modifier  */
+	/* fonction complÃ¨te : ne pas modifier  */
 	int errno;
 	void * tmpPtr;
 	rep->nb_elts = 0;
-	rep->est_trie = true; /* un répertoire vide est trié :-) */
+	rep->est_trie = true; /* un rÃ©pertoire vide est triÃ© :-) */
 #ifdef IMPL_TAB
 						  // code pour tableau
 
@@ -164,40 +164,40 @@ int init_rep(Repertoire *rep)
 } /* fin init_rep */
 
   /**************************************************************************/
-  /*  Lecture d'une chaîne de caractères depuis le clavier.                 */
-  /*  Elle est stockée dans le tableau de char passé en paramètre           */
-  /*   La longueur max à lire est donnée en second paramètre                */
-  /*   Elle renvoie la longueur de la chaine et une longueur négative s'il  */
-  /*   y a eu un problème                                                   */
+  /*  Lecture d'une chaÃ®ne de caractÃ¨res depuis le clavier.                 */
+  /*  Elle est stockÃ©e dans le tableau de char passÃ© en paramÃ¨tre           */
+  /*   La longueur max Ã  lire est donnÃ©e en second paramÃ¨tre                */
+  /*   Elle renvoie la longueur de la chaine et une longueur nÃ©gative s'il  */
+  /*   y a eu un problÃ¨me                                                   */
   /**************************************************************************/
 int saisie_chaine(unsigned char c[], int max)
 {
-	/* fonction complète : ne pas modifier */
+	/* fonction complÃ¨te : ne pas modifier */
 
-	/* longueur de la chaîne c */
+	/* longueur de la chaÃ®ne c */
 	int l;
 
 	/* saisie en rangeant dans tableau c */
-	if (fgets(c, max, stdin) == NULL)          /* lecture des caractères sur entrée standard= clavier */
+	if (fgets(c, max, stdin) == NULL)          /* lecture des caractÃ¨res sur entrÃ©e standard= clavier */
 		return -1;	
 						   /* s'il y a une erreur, on renvoie -1                  */
 	
 	l = strlen(c);							   /* calcul de la longueur de la chaine */
 
 	if (c[l - 1] == '\n')					   /* suppression du retour chariot            */
-	{									       /* en fin de chaîne s'il est présent        */
-		c[l - 1] = '\0';                       /* écriture d'un caractère de fin de chaine */
-		l--;                                   /* à la place                               */
+	{									       /* en fin de chaÃ®ne s'il est prÃ©sent        */
+		c[l - 1] = '\0';                       /* Ã©criture d'un caractÃ¨re de fin de chaine */
+		l--;                                   /* Ã  la place                               */
 	}
 	return l;								   /* on retourne la longueur de */
 } /* fin saisie_chaine */
 
   /**************************************************************************/
-  /* entrée au clavier d'un enregistrement (contact)                        */
-  /* l'élément saisi est stocké dans l'enregistrement pointé par le         */
+  /* entrÃ©e au clavier d'un enregistrement (contact)                        */
+  /* l'Ã©lÃ©ment saisi est stockÃ© dans l'enregistrement pointÃ© par le         */
   /* parametre enr                                                          */
-  /* la fonction renvoie OK si l'élément est correctement saisie et         */
-  /* ERROR s'il y a eu un problème...                                       */
+  /* la fonction renvoie OK si l'Ã©lÃ©ment est correctement saisie et         */
+  /* ERROR s'il y a eu un problÃ¨me...                                       */
   /**************************************************************************/
 int saisie_enreg(Enregistrement *enr)
 {
@@ -216,45 +216,45 @@ int saisie_enreg(Enregistrement *enr)
 	/* chaine trop longue ? */
 	if (l >= MAX_NOM)
 	{
-		printf("nom tronqué...\n");
+		printf("nom tronquÃ©...\n");
 
 	}
 	/* on copie dans le champ nom... */
 	strncpy_s(enr->nom, _countof(enr->nom) , tmp, _TRUNCATE);
 
-	/* Entrée clavier du prénom */
-	printf("Prénom :");
+	/* EntrÃ©e clavier du prÃ©nom */
+	printf("PrÃ©nom :");
 	if ((l = saisie_chaine(tmp, MAX_SAISIE)) < 0)
 		return ERROR;
 	/* chaine vide ? */
 	if (l == 0)
 	{
-		printf("prénom vide...\n");
+		printf("prÃ©nom vide...\n");
 
 	}
 	/* chaine trop longue ? */
 	if (l >= MAX_NOM)
 	{
-		printf("prénom trop long...\n");
+		printf("prÃ©nom trop long...\n");
 
 	}
 	/* on copie dans le champ prenom... */
 	strncpy_s(enr->prenom, _countof(enr->prenom) - 1, tmp, _TRUNCATE);
 
-	/* Entrée clavier du numéro de téléphone */
-	printf("Téléphone :");
+	/* EntrÃ©e clavier du numÃ©ro de tÃ©lÃ©phone */
+	printf("TÃ©lÃ©phone :");
 	if ((l = saisie_chaine(tmp, MAX_SAISIE)) < 0)
 		return ERROR;
 	/* chaine vide ? */
 	if (l == 0)
 	{
-		printf("téléphone vide...\n");
+		printf("tÃ©lÃ©phone vide...\n");
 
 	}
 	/* chaine trop longue ? */
 	if (l >= MAX_TEL)
 	{
-		printf("téléphone tronqué...\n");
+		printf("tÃ©lÃ©phone tronquÃ©...\n");
 
 	}
 	/* on copie dans le champ tel... */
@@ -265,24 +265,24 @@ int saisie_enreg(Enregistrement *enr)
 
 
   /********************************************************************************/
-  /*  Affichage paginé du répertoire par façon commande DOS 'more'                */
+  /*  Affichage paginÃ© du rÃ©pertoire par faÃ§on commande DOS 'more'                */
   /********************************************************************************/
 void affichage_repertoire(Repertoire *rep)
 {
 	int idx = 0;							/* Index sur enregistrement courant */
-	int cpt = LIGNES_PAR_PAGE;				/* Compteur de ligne affichées */
+	int cpt = LIGNES_PAR_PAGE;				/* Compteur de ligne affichÃ©es */
 	char key = 0;							/* Controle de l'affichage */
 
-	trier(rep);								/* trie du répertoire avant affichage */
+	trier(rep);								/* trie du rÃ©pertoire avant affichage */
 #ifdef IMPL_LIST
-	// on place un pointeur sur la tête de liste,
-	// elle est peut-être vide
+	// on place un pointeur sur la tÃªte de liste,
+	// elle est peut-Ãªtre vide
 	SingleLinkedListElem *currentElement = rep->liste->head;
 #endif
-	// tant qu'il y a un élément
+	// tant qu'il y a un Ã©lÃ©ment
 	while ((idx < rep->nb_elts) && (key != 'X'))
 	{
-		if (cpt > 0)						/* S'il reste des lignes à afficher */
+		if (cpt > 0)						/* S'il reste des lignes Ã  afficher */
 		{								/* dans la page */
 #ifdef IMPL_TAB
 			affichage_enreg_frmt(rep->tab[idx]);	/* Affichage enrg courant */
@@ -298,8 +298,8 @@ void affichage_repertoire(Repertoire *rep)
 			cpt--;							/* Une ligne de moins a afficher */
 		}
 		else
-		{	/* si page complétement affichée, on attend la suite */
-			printf("\n\n_____________________________ entrée/espace/x ___ :\n");
+		{	/* si page complÃ©tement affichÃ©e, on attend la suite */
+			printf("\n\n_____________________________ entrÃ©e/espace/x ___ :\n");
 
 			do
 			{
@@ -313,23 +313,23 @@ void affichage_repertoire(Repertoire *rep)
 
 
   /**********************************************************************/
-  /* Recherche par no de téléphone avec compactage du no                */
+  /* Recherche par no de tÃ©lÃ©phone avec compactage du no                */
   /**********************************************************************/
 int rechercher_tel(Repertoire *rep, char tel[], int ind)
 {
-	int i = ind; // indice de début de recherche
+	int i = ind; // indice de dÃ©but de recherche
 	int ind_fin;
 
 	char tmp_tel[MAX_TEL];
 	char tmp_tel2[MAX_TEL];
 	bool trouve = false;
 
-	ind_fin = rep->nb_elts - 1; // indice de fin à ne pas dépasser
+	ind_fin = rep->nb_elts - 1; // indice de fin Ã  ne pas dÃ©passer
 	strncpy_s(tmp_tel, _countof(tmp_tel) , tel, _TRUNCATE);
-	compact(tmp_tel); // nettoyage du numéro
+	compact(tmp_tel); // nettoyage du numÃ©ro
 
 #ifdef IMPL_LIST
-					  // on se place sur l'élément en ième position s'il existe
+					  // on se place sur l'Ã©lÃ©ment en iÃ¨me position s'il existe
 	SingleLinkedListElem *currentElement = GetElementAt(rep->liste, i);
 	while ((currentElement != NULL) && (!trouve)) {
 		strncpy_s(tmp_tel2, _countof(tmp_tel2) , currentElement->pers.tel,_TRUNCATE);
@@ -337,7 +337,7 @@ int rechercher_tel(Repertoire *rep, char tel[], int ind)
 		if (strcmp(tmp_tel, tmp_tel2) == 0)
 			trouve = true;
 		else {
-			// si pas trouvé, on passe au suivant
+			// si pas trouvÃ©, on passe au suivant
 			currentElement = currentElement->next;
 			i++;
 		}
@@ -367,11 +367,11 @@ int rechercher_tel(Repertoire *rep, char tel[], int ind)
   /***********************************************************************************************************/
   /*                                                                                                         */
   /*  Lecture de champs contenus dans les lignes du fichier                                                  */
-  /*  - ligne: pointeur sur un buffer qui contient la ligne lue dans le fichier et terminée par un zéro     */
+  /*  - ligne: pointeur sur un buffer qui contient la ligne lue dans le fichier et terminÃ©e par un zÃ©ro     */
   /*  - idx: pointeur sur un entier qui indique la position courante de la recherche dans la ligne           */
-  /*  - champ: pointeur sur la variable à renseigner avec les informations trouvées entre deux séparateurs   */
-  /*  - taille_champ : la taille du champ à ne pas dépasser                                                  */
-  /*  - separateur : le caractère utilisé comme séparateur                                                   */
+  /*  - champ: pointeur sur la variable Ã  renseigner avec les informations trouvÃ©es entre deux sÃ©parateurs   */
+  /*  - taille_champ : la taille du champ Ã  ne pas dÃ©passer                                                  */
+  /*  - separateur : le caractÃ¨re utilisÃ© comme sÃ©parateur                                                   */
   /***********************************************************************************************************/
 
 int lire_champ_suivant(char *ligne, int *idx, char *champ, int taille_champ,
@@ -392,7 +392,7 @@ int lire_champ_suivant(char *ligne, int *idx, char *champ, int taille_champ,
 		champ[idx2] = 0;	/* fin de chaine sur caractere suivant */
 		return(OK);
 	}
-	else return(ERROR);		/* fin de ligne ou séparateur non atteints */
+	else return(ERROR);		/* fin de ligne ou sÃ©parateur non atteints */
 
 } /* fin lire_champ_suivant() */
 
@@ -405,7 +405,7 @@ void afficher_menu_recherche()
 {
 	printf("\n\n Recherche :\n\n");
 	printf("\n\t par (N)om");
-	printf("\n\t par (T)éléphone");
+	printf("\n\t par (T)Ã©lÃ©phone");
 	printf("\n\t\te(X)it\n");
 	return;
 }
@@ -419,7 +419,7 @@ bool traiter_recherche(Repertoire *rep, int pos)
 {
 	char key = 0;
 #ifdef IMPL_LIST
-	// on récupère l'élément en ième position
+	// on rÃ©cupÃ¨re l'Ã©lÃ©ment en iÃ¨me position
 	SingleLinkedListElem *currentElement = GetElementAt(rep->liste, pos);
 	if (currentElement != NULL)
 		affichage_enreg(currentElement->pers);
@@ -472,7 +472,7 @@ void option_rechercher(Repertoire *rep)
 
 	if (rep->nb_elts <= 0)
 	{
-		printf("\nRépertoire vide ...\n");
+		printf("\nRÃ©pertoire vide ...\n");
 		return;
 	}
 	afficher_menu_recherche();
@@ -540,7 +540,7 @@ void option_rechercher(Repertoire *rep)
 }
 
 /**********************************************************************/
-/* ajoute  un contact au répertoire                                   */
+/* ajoute  un contact au rÃ©pertoire                                   */
 /**********************************************************************/
 
 void option_ajouter(Repertoire *rep)
@@ -572,7 +572,7 @@ int saisir_chemin(char *message, char *buffer)
 
 void afficher_menu_principal()
 {
-	printf("\n\n Répertoire :");
+	printf("\n\n RÃ©pertoire :");
 	printf("\n\n\t(A)fficher tout");
 	printf("\n\ta(J)outer une personne");
 	printf("\n\trecherche(R) une personne");
